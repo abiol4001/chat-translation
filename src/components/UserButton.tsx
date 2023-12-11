@@ -11,7 +11,7 @@ import {
 import UserAvatar from "@/components/UserAvatar"
 import { Session } from "next-auth"
 import { Button } from "./ui/button"
-import { signIn } from "next-auth/react"
+import { signIn, signOut } from "next-auth/react"
 
 
 type Props = {
@@ -34,8 +34,8 @@ const UserButton = ({session}: Props) => {
               <DropdownMenuSeparator />
               <DropdownMenuItem>Profile</DropdownMenuItem>
               <DropdownMenuItem>Billing</DropdownMenuItem>
-              <DropdownMenuItem>Team</DropdownMenuItem>
               <DropdownMenuItem>Subscription</DropdownMenuItem>
+              <DropdownMenuItem onClick={()=> signOut()}>Sign out</DropdownMenuItem>
           </DropdownMenuContent>
       </DropdownMenu>
 
