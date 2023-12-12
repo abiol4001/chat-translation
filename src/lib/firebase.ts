@@ -8,7 +8,7 @@ import { getFunctions } from "firebase/functions";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE,
+  apiKey: "AIzaSyDMerk78th4t0YNlh-OcakV03zMVO1_rSc",
   authDomain: "chat-translation-fde99.firebaseapp.com",
   projectId: "chat-translation-fde99",
   storageBucket: "chat-translation-fde99.appspot.com",

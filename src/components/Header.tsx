@@ -11,7 +11,7 @@ type Props = {}
 const Header = async (props: Props) => {
 
     const session = await getAuthSession()
-    console.log(session)
+    // console.log(session)
   return (
     <header className='sticky top-0 z-50 bg-white dark:bg-gray-900'>
         <nav className='flex flex-col sm:flex-row items-center lg:justify-between bg-transparent max-w-7xl mx-auto h-[100px] pl-2'>
