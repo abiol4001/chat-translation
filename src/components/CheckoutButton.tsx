@@ -8,6 +8,10 @@ import { db } from '@/lib/firebase'
 import { Loader2 } from 'lucide-react'
 
 type Props = {}
+interface SnapData {
+    error: string; 
+    url: string;   
+}
 
 const CheckoutButton = (props: Props) => {
     const { data: session } = useSession()
@@ -22,11 +26,15 @@ const CheckoutButton = (props: Props) => {
             price: "price_1OOeLQGZbxGml25FrQe4cleA",
             success_url: window.location.origin,
             cancel_url: window.location.origin,
-            collect_shipping_address: false,
+            // collect_shipping_address: true,
         })
 
-        return onSnapshot(docRef, snap => {
-            const { error, url } = snap.data();
+        return onSnapshot(docRef, (snap) => {
+            const {error, url} = snap.data() as {
+                error?: {message: string};
+                url?: string
+            };
+            
             if (error) {
                 // Show an error to your customer and
                 // inspect your Cloud Function logs in the Firebase console.

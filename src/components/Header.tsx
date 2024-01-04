@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { getAuthSession } from '@/lib/nextauth'
 import { MessageSquareIcon } from 'lucide-react'
 import CreateChatButton from './CreateChatButton'
+import UpgradeBanner from './UpgradeBanner'
 
 type Props = {}
 
@@ -40,6 +41,8 @@ const Header = async (props: Props) => {
                 <UserButton session={session}/>
             </div>
         </nav>
+
+        <UpgradeBanner />
     </header>
   )
 }
