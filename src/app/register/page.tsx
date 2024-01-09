@@ -39,7 +39,7 @@ const tiers = [
 const Register = async (props: Props) => {
     const session = await getAuthSession()
     return (
-        <div className='isolate overflow-hidden bg-gray-900 min-h-screen'>
+        <div className='isolate overflow-hidden bg-gray-900 min-h-[calc(100vh-100px)]'>
             <div className='mx-auto max-w-7xl px-6 pb-16 pt-24 text-center sm:pt-32 lg:px-8'>
                 <div className='mx-auto max-w-4xl'>
                     <p className='text-3xl sm:text-5xl tracking-tight font-bold mt-2 text-white'>

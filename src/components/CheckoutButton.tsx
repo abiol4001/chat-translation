@@ -6,6 +6,8 @@ import { useState } from 'react'
 import { addDoc, collection, onSnapshot } from 'firebase/firestore'
 import { db } from '@/lib/firebase'
 import { Loader2 } from 'lucide-react'
+import { useSubscriptionStore } from '@/app/store/store'
+import ManageAccountButton from './ManageAccountButton'
 
 type Props = {}
 interface SnapData {
@@ -16,6 +18,12 @@ interface SnapData {
 const CheckoutButton = (props: Props) => {
     const { data: session } = useSession()
     const [isLoading, setIsLoading] = useState(false)
+
+    
+    const subscription = useSubscriptionStore((state)=> state.subscription)
+    const isLoadingSubscription = subscription === undefined
+
+    const isSubscribed = subscription?.status === "active" && subscription?.role === "pro"
 
     const createCheckoutSession = async () => {
         if (!session?.user?.id) return
@@ -51,12 +59,16 @@ const CheckoutButton = (props: Props) => {
 
     return (
         <div>
-            <Button disabled={isLoading} onClick={() => createCheckoutSession()} className={`mt-auto w-full bg-indigo-500 text-white hover:bg-indigo-500 disabled:bg-gray-400 disabled:cursor-not-allowed hover:opacity-80 transition`}>
-                {isLoading
+            <Button disabled={isLoading} className={`mt-auto w-full bg-indigo-500 text-white hover:bg-indigo-500 disabled:bg-gray-400 disabled:cursor-not-allowed hover:opacity-80 transition`}>
+                {isSubscribed ?
+                <ManageAccountButton />
+                :
+                isLoadingSubscription ||
+                isLoading
                     ? <>
                         <Loader2 className='animate-spin mr-1 h-4 w-4' /> Loading
                     </>
-                    : "Sign up"}
+                        : <button onClick={() => createCheckoutSession()}>Sign up</button>}
             </Button>
         </div>
     )
